@@ -1,10 +1,14 @@
 import Pages from "./components/home/pages/Pages";
 import "./style/main.scss";
+import { Provider } from "react-redux";
+import store from "./app/store";
 
 function App() {
    return (
       <>
-         <Pages />
+         <Provider store={store}>
+            <Pages />
+         </Provider>
       </>
    );
 }

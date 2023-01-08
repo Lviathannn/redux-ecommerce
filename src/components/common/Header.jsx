@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import logo from "../assets/images/logo.svg";
 import { BiSearch } from "react-icons/bi";
 import { BsBagCheck } from "react-icons/bs";
 import { RiUser3Line } from "react-icons/ri";
-import { AiOutlineHeart, AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import {
+   AiOutlineHeart,
+   AiOutlineMenu,
+   AiOutlineClose,
+   AiOutlineDelete,
+} from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { navlist } from "../assets/data/data";
+import cartImg from "../assets/images/cart.png";
+import { REMOVE } from "../../features/cartSlice";
 
 export default function Header() {
    window.addEventListener("scroll", function () {
@@ -14,6 +22,33 @@ export default function Header() {
    });
 
    const [mobile, setMobile] = useState(false);
+   const [cartList, setCartList] = useState(false);
+
+   // cart add in shop
+   const getData = useSelector((state) => {
+      return state.cart.carts;
+   });
+
+   const handelClose = () => {
+      setCartList(null);
+   };
+   const dispatch = useDispatch();
+
+   // Total Price
+
+   const [price, setPrice] = useState(0);
+
+   const total = useCallback(() => {
+      let price = 0;
+      getData.map((item) => {
+         price = parseFloat(item.price) * item.qty + price;
+      });
+      setPrice(price);
+   });
+
+   useEffect(() => {
+      total();
+   }, [total]);
 
    return (
       <>
@@ -55,23 +90,28 @@ export default function Header() {
                         <AiOutlineHeart className="userIcon heIcon" />
                      </div>
                      <div className="right_card">
-                        <button className="button">
+                        <button
+                           className="button"
+                           onClick={() => {
+                              setCartList(!cartList);
+                           }}
+                        >
                            <BsBagCheck className="shop heIcon" />
-                           MY CART<span> (0) </span>
+                           MY CART<span> ({getData.length}) </span>
                         </button>
-                        {/* <div className={cartList ? "showCart" : "hideCart"}>
-                           {getdata.length ? (
+                        <div className={cartList ? "showCart" : "hideCart"}>
+                           {getData.length ? (
                               <section className="details">
                                  <div className="details_title">
                                     <h3>Photo</h3>
                                     <p>Product Name</p>
                                  </div>
-                                 {getdata.map((e) => (
-                                    <div className="details_content">
+                                 {getData.map((e) => (
+                                    <div className="details_content" key={e.id}>
                                        <div className="details_content_img">
                                           <Link
                                              to={`/cart/${e.id}`}
-                                             onClick={handleCloses}
+                                             onClick={handelClose}
                                           >
                                              <img src={e.cover} alt="" />
                                           </Link>
@@ -84,7 +124,11 @@ export default function Header() {
                                           </div>
                                        </div>
                                        <div className="details_content_detail_icon">
-                                          <i onClick={() => delet(e.id)}>
+                                          <i
+                                             onClick={() => {
+                                                dispatch(REMOVE(e.id));
+                                             }}
+                                          >
                                              <AiOutlineDelete />
                                           </i>
                                        </div>
@@ -97,10 +141,10 @@ export default function Header() {
                            ) : (
                               <div className="empty">
                                  <p>Your cart is empty</p>
-                                 <img src={cartimg} alt="" />
+                                 <img src={cartImg} alt="" />
                               </div>
                            )}
-                        </div> */}
+                        </div>
                      </div>
                   </div>
                </div>

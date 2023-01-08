@@ -2,8 +2,8 @@ import React from "react";
 import Header from "../../common/Header";
 import Footer from "../../common/Footer";
 import Home from "../Home";
-import Shop from "../../shop/Shop";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Detail from "../detail/Detail";
 
 export default function Pages() {
    return (
@@ -11,7 +11,7 @@ export default function Pages() {
          <Header />
          <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/shop" element={<Shop />} />
+            <Route path="/cart/:id" element={<Detail />} />
          </Routes>
          <Footer />
       </Router>

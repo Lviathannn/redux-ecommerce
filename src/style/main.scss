@@ -12,6 +12,10 @@
 @import "details";
 @import "searchItem";
 
+::-webkit-scrollbar {
+   display: none;
+}
+
 body {
    background: $light;
    font-family: "Poppins", sans-serif;

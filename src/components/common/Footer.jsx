@@ -1,5 +1,9 @@
 import React from "react";
 
 export default function Footer() {
-   return <div>Footer</div>;
+   return (
+      <footer>
+         <p>Copyright © GOSTO all rights reserved</p>
+      </footer>
+   );
 }

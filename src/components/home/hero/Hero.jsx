@@ -12,7 +12,6 @@ export default function Hero() {
 
    const onSearchHandler = (key) => {
       setValue(key);
-      console.log(key);
    };
 
    return (
