@@ -1,12 +1,13 @@
 .cards {
-  display: grid;
-  @include grid(repeat(5, 1fr), 30px);
-  .card {
-    @include flex(center, none, center);
+   display: grid;
+   @include grid(repeat(4, 1fr), 30px);
+   grid-auto-flow: row;
+   .card {
+      @include flex(center, none, center);
 
-    img {
-      width: 60px;
-      margin-right: $md;
-    }
-  }
+      img {
+         width: 60px;
+         margin-right: $md;
+      }
+   }
 }

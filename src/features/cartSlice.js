@@ -17,7 +17,6 @@ const cartReducer = createSlice({
          const itemIndex = state.carts.findIndex((item) => {
             return item.id === action.payload.id;
          });
-
          if (itemIndex >= 0) {
             state.carts[itemIndex].qty += 1;
          } else {
@@ -25,8 +24,19 @@ const cartReducer = createSlice({
             return { ...state, carts: [...state.carts, temp] };
          }
       },
+      REMOVE_ITEM: (state, action) => {
+         const itemIndex = state.carts.findIndex((item) => {
+            return item.id === action.payload.id;
+         });
+
+         if (itemIndex >= 0) {
+            if (state.carts[itemIndex].qty >= 1) {
+               state.carts[itemIndex].qty -= 1;
+            }
+         }
+      },
    },
 });
 
 export default cartReducer.reducer;
-export const { ADD, REMOVE } = cartReducer.actions;
+export const { ADD, REMOVE, REMOVE_ITEM } = cartReducer.actions;

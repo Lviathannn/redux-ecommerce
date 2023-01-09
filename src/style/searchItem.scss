@@ -1,13 +1,25 @@
 .searchItems {
-  padding: 0;
-  .product_items {
-    @include grid(repeat(3, 1fr), 30px);
-    margin-top: -25px;
-    background: $white;
-    border-radius: 0 0 30px 30px;
-    width: 100%;
-    .box {
-      padding: 20px;
-    }
-  }
+   padding: 0;
+   .product_items {
+      @include grid(repeat(3, 1fr), 10px);
+      margin-top: 10px;
+      background: $white;
+      border-radius: 30px;
+      width: 100%;
+      -webkit-border-radius: 30px;
+      -moz-border-radius: 30px;
+      -ms-border-radius: 30px;
+      -o-border-radius: 30px;
+      .box {
+         padding: 20px;
+      }
+   }
+}
+
+@include media-sm {
+   .searchItems {
+      .product_items {
+         @include grid(repeat(2, 1fr), 10px);
+      }
+   }
 }

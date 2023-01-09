@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import logo from "../assets/images/logo.svg";
-import { BiSearch } from "react-icons/bi";
 import { BsBagCheck } from "react-icons/bs";
 import { RiUser3Line } from "react-icons/ri";
 import {
@@ -40,11 +39,11 @@ export default function Header() {
 
    const total = useCallback(() => {
       let price = 0;
-      getData.map((item) => {
+      getData.forEach((item) => {
          price = parseFloat(item.price) * item.qty + price;
       });
       setPrice(price);
-   });
+   }, [getData]);
 
    useEffect(() => {
       total();
@@ -74,17 +73,20 @@ export default function Header() {
                         <ul className={mobile ? "mobile-nav" : "menu"}>
                            {navlist.map((nav, i) => (
                               <li key={i}>
-                                 <Link to={nav.path}>{nav.text}</Link>
+                                 <Link
+                                    to={nav.path}
+                                    onClick={() => {
+                                       setMobile(false);
+                                    }}
+                                 >
+                                    {nav.text}
+                                 </Link>
                               </li>
                            ))}
                         </ul>
                      </div>
                   </nav>
                   <div className="right">
-                     <div className="right_search">
-                        <input type="text" placeholder="Search Products..." />
-                        <BiSearch className="serachIcon heIcon" />
-                     </div>
                      <div className="right_user">
                         <RiUser3Line className="userIcon heIcon" />
                         <AiOutlineHeart className="userIcon heIcon" />
@@ -97,7 +99,7 @@ export default function Header() {
                            }}
                         >
                            <BsBagCheck className="shop heIcon" />
-                           MY CART<span> ({getData.length}) </span>
+                           MY CART
                         </button>
                         <div className={cartList ? "showCart" : "hideCart"}>
                            {getData.length ? (

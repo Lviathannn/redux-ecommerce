@@ -17,7 +17,6 @@ export default function Blog() {
                         <img src={item.cover} alt="" />
                      </div>
                      <div className="text">
-                        <button className="button">{item.category}</button>
                         <p>
                            Post Date : <span>{item.date}</span>
                         </p>

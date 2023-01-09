@@ -34,18 +34,12 @@ export const hero = [
    },
    {
       id: 3,
-      cover: "../images/hero/cate-h11_3.png",
-      name: "3D Models",
-      items: "12",
-   },
-   {
-      id: 4,
       cover: "../images/hero/cate-h11_5.png",
       name: "Image Stock",
       items: "15",
    },
    {
-      id: 5,
+      id: 4,
       cover: "../images/hero/cate-h11.png",
       name: "Mockup Design",
       items: "7",
@@ -129,7 +123,7 @@ export const banner = [
    {
       id: 1,
       title1: "Simple IPhone ",
-      title2: "Mockups Design PSD, Ai, EPS",
+      title2: "Mockups Design PSD",
       desc: "Sale 30% Off For Members",
       cover: "../images/banner/b2.png",
    },
@@ -185,7 +179,7 @@ export const topProducts = [
       title: "Floating 2021 iPhone 12 Mockups (PSD)",
       author: "by Blueskytechco in Mockups",
       price: "30.00",
-      category: "images stocks",
+      category: "web theme",
       qty: 0,
    },
    {
@@ -194,7 +188,7 @@ export const topProducts = [
       title: "Floating 2021 iPhone 12 Mockups (PSD)",
       author: "by Blueskytechco in Mockups",
       price: "30.00",
-      category: "images stocks",
+      category: "web theme",
       qty: 0,
    },
    {

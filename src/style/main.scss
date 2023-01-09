@@ -104,7 +104,7 @@ p {
       }
       .overlay {
          @include flex(center, center, center);
-         @include positions(absolute, none, $xl-4, 0, none, 100%, auto);
+         @include positions(absolute, none, 0, 0, none, 100%, auto);
          opacity: 0;
          @include transition;
          transform: translateY(0);
@@ -115,7 +115,22 @@ p {
       }
    }
 }
-
+.banner {
+   .posts {
+      @include flex(center, center, row);
+      .post {
+         .content {
+            img {
+               border-radius: 10px;
+               -webkit-border-radius: 10px;
+               -moz-border-radius: 10px;
+               -ms-border-radius: 10px;
+               -o-border-radius: 10px;
+            }
+         }
+      }
+   }
+}
 .posts {
    @include grid(repeat(2, 1fr), 30px);
    margin-top: $xl-6;
